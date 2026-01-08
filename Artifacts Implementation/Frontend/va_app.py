@@ -475,73 +475,6 @@ def chat_history():
 	display_msg(chat_session)
 
 
-def analytics_dashboard():
-	"""
-	Render the analytics dashboard interface.
-
-	Provides visualization and analysis of chat sessions, feedback,
-	and usage statistics. Limited to admin users only.
-	"""
-	if st.session_state.user_background['cwid'] not in FE_CFG['admin_cwid']:
-		st.header('You do not have permission to view this page')
-	else:
-		st.header('Solver Analytics Dashboard')
-		date_range_tab, by_date_tab = st.tabs(['By date range', 'By specific date'])
-		with date_range_tab:
-			default_start, default_end = (
-				datetime.now() - timedelta(days=7),
-				datetime.now(),
-			)
-			refresh_value = timedelta(days=7)
-			date_range_string = date_range_picker(
-				picker_type=PickerType.date,
-				start=default_start,
-				end=default_end,
-				key='date_range_picker',
-				refresh_button={
-					'is_show': True,
-					'button_name': 'Refresh Last 1 Days',
-					'refresh_value': refresh_value,
-				},
-			)
-			if date_range_string:
-				start, end = date_range_string
-
-			all_fb_sessions = call_api(
-				data={
-					'by': 'date_range',
-					'filter_value': json.dumps({'start': start, 'end': end}),
-				},
-				method='get',
-				endpoint=BE_ENDPOINT,
-				service='query_session_ids_with_filter',
-				headers=st.session_state.be_headers,
-			)['response']
-
-		with by_date_tab:
-			available_dates = call_api(
-				data={'filter_type': 'data'}, endpoint=BE_ENDPOINT, service='get_dates', method='get', headers=st.session_state.be_headers
-			)['response']
-			if len(available_dates) > 0:
-				selected_date = st.selectbox('Select date', options=available_dates, index=0)
-				feedback_summary = call_api(
-					data={'date': selected_date},
-					endpoint=BE_ENDPOINT,
-					service='get_feedback_summary',
-					method='get',
-					headers=st.session_state.be_headers,
-				)['response']
-				display_feedback_sumamry(feedback_summary)
-				all_fb_sessions = call_api(
-					data={'by': 'date', 'filter_value': selected_date},
-					method='get',
-					endpoint=BE_ENDPOINT,
-					service='query_session_ids_with_filter',
-					headers=st.session_state.be_headers,
-				)['response']
-
-
-
 @st.dialog('Feedback', width='large')
 def show_feedback_prompt():
 	"""
@@ -1056,3 +989,4 @@ PAGE_MAPPING = {
 }
 
 st.set_page_config(page_title=FE_CFG['page_title'], layout='centered')
+
