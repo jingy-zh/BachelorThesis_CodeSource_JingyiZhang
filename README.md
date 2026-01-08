@@ -4,9 +4,9 @@
 
 ***1. Install Sentence Transformers library:***
 
-   Option 1: `pip install pandas sentence-transformers rouge-score scikit-learn scipy numpy openpyxl` (may fail due to TLS CA certificate error )
+   Option 1 (may fail due to TLS CA certificate error): `pip install pandas sentence-transformers rouge-score scikit-learn scipy numpy openpyxl`
 
-   Option 2 (Used in the thesis): Downloading the files to the local path: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+   Option 2: (Used in the thesis): Downloading the files to the local path: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
 
 ***2. Run the script in terminal:***
 
