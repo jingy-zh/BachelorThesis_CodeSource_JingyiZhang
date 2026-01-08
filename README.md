@@ -56,13 +56,4 @@
       * **document_search.py:** **_Managing document embeddings in the vector database._** Creating document, hybrid retrieving in the database (`def search ()`), removing document from the database, updating metadata fields re-ingesting embeddings (`def update_document_metadata ()`), system automated monitoring document validity, and setting status of expired document to 'deprectaed' in database (`def expire_documents ()`). Hard gate and softe gate in hybrid retrieval also are defined in the `def search ()` function.
       * **main.py:** **_SAP Document processing module through DOCX documents._** Expanding query (`class InternalQueryExpander`); uploading, listing, and deleting document; updating metadata (`def update_document_metadata ()`); monitoring document validity and sending notification email to responsible roles (`def enforce_document_validity ()`), constraining the LLM through prompting to avoid hallucination answers (`def execute ()`, `def execute_stream ()`).
     
-* **Frontend (`va_app.py`):** A Streamlit interface for chat, providing feedback, and document management.
-
-
-
-
-
-
-* **Data Processing (`document_processor.py`):** Processing documents, extracting and chunking content.
-  
-* **Storage Layer (`document_search.py` & Models):** Manages interactions with PostgreSQL (using `pgvector`) and S3 for object storage.
+* **Frontend (`va_app.py`):** A Streamlit frontend interface for chatting, submitting feedback, and document management.
