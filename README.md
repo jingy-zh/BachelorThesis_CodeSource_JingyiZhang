@@ -39,11 +39,15 @@
 
 The repository is structured into the following core components:
 
+* **Service Layer (`main.py`):** The core logic orchestrating the RAG, hybrid search, query expansion, metadata management, document management, document validity monitor, etc.
+
 * **Frontend (`va_app.py`):** A Streamlit interface for chat, document Management.
 
 * **API Layer (`*_router.py`):** FastAPI routers handling HTTP requests for chat streaming, feedback, and document CRUD operations.
 
-* **Service Layer (`main.py`):** The core logic orchestrating the RAG, hybrid search, query expansion, metagata management, document validity monitor, etc.
+* **Database Layer (`*_model.py`):** Database structure for data storage.SQLAlchemy ORM models represents database tables.
+
+* **Validation Layer (`*_schema.py`):** Pydantic models for request/response validation.
 
 * **Data Processing (`document_processor.py`):** Processing documents, extracting and chunking content.
   
