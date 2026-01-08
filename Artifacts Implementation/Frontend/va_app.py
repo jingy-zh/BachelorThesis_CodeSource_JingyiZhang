@@ -1,10 +1,8 @@
 """
-Streamlit-based frontend interface for the Solver application.
+Streamlit-based frontend interface.
 
-This module provides a web interface for interacting with the Solver application,
-including chat interfaces, document management, analytics dashboards, and admin tools.
-The application supports multiple interface types, user authentication, document processing,
-feedback collection, and real-time communication with backend services.
+This module provides a web interface for interacting with the AI assistant,
+including chat interfaces, document management, feedback window, feedback collection, and real-time communication with backend services.
 """
 
 import json
@@ -1056,4 +1054,5 @@ PAGE_MAPPING = {
 	'SAP Documents Q&A Testing': sap_docs_test_page,
 	'Manage Documents': manage_documents,
 }
+
 st.set_page_config(page_title=FE_CFG['page_title'], layout='centered')
