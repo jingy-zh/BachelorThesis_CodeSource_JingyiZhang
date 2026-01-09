@@ -44,7 +44,7 @@
    * **sap_documents_model.py:** Database structure to storeg SAP documents and their vector embeddings. New Metadata fields implemented from the Demonstration are added to the database.
 
 * **API Layer (`*_router.py`):** FastAPI routers handling HTTP requests for chat streaming, feedback, and document CRUD operations.
-    * **feedback_router.py:** FastAPI endpoints for feedback management. The function of 'sending email to the responsible role when the user flags the answer as outdated knowledge' is defined in the functions `def _send_email()` and `async def save_feedback ()`. 
+    * **feedback_router.py:** FastAPI endpoints for feedback management. **The function of 'sending email to the responsible role when the user flags the answer as outdated knowledge' is defined in the functions `def _send_email()` and `async def save_feedback ()`.** 
     * **sap_documents_router.py:** FastAPI endpoints for managing SAP documents.
        
 * **Validation Layer (`*_schema.py`):** Pydantic models for request/response validation.
@@ -55,9 +55,9 @@
    * **sap_documents** Core functionality in sap document management, retrieval, and validity monitoring.
       * **config.py:** Configuration settings for SAP document processing and storage, including LLM model and temperature, chunk size, embedding model, and vector size etc.
       * **document_processor.py:** Processing document before retrieval, including extracting text, images, and tables. Text is segements into chunks, images and tables are stored in AWS S3 bucket.
-      * **document_search.py:** **_Managing document embeddings in the vector database._** Creating document, hybrid retrieving in the database (`def search ()`), removing document from the database, updating metadata fields re-ingesting embeddings (`def update_document_metadata ()`), system automated monitoring document validity, and setting status of expired document to 'deprectaed' in database (`def expire_documents ()`). Hard gate and softe gate in hybrid retrieval also are defined in the `def search ()` function.
-      * **main.py:** **_SAP Document processing module through DOCX documents._** Expanding query (`class InternalQueryExpander`); uploading, listing, and deleting document; updating metadata (`def update_document_metadata ()`); monitoring document validity and sending notification email to responsible roles (`def enforce_document_validity ()`), constraining the LLM through prompting to avoid hallucination answers (`def execute ()`, `def execute_stream ()`).
+      * **document_search.py:** **_Managing document embeddings in the vector database._** Creating document, **hybrid retrieving in the database (`def search ()`)**, removing document from the database, **updating metadata fields re-ingesting embeddings (`def update_document_metadata ()`)**, **system automated monitoring document validity, and setting status of expired document to 'deprectaed' in database (`def expire_documents ()`)**. Hard gate and softe gate in hybrid retrieval also are defined in the `def search ()` function.
+      * **main.py:** **_SAP Document processing module through DOCX documents._** **Expanding query (`class InternalQueryExpander`)**; uploading, listing, and deleting document; **updating metadata (`def update_document_metadata ()`)**; **monitoring document validity and sending notification email to responsible roles (`def enforce_document_validity ()`)**, **constraining the LLM through prompting to avoid hallucination answers (`def execute ()`, `def execute_stream ()`)**.
     
 ## Frontend
 
-* **va_app.py:** A Streamlit frontend interface for chatting (`def sap_docs_test_page()`), submitting feedback (`def _submit_feedback()`), and document management (`def manage_sap_documents()`). Metadata filter function on chat interface is defined in `def sap_docs_test_page()`.
+* **va_app.py:** A Streamlit frontend interface for chatting (`def sap_docs_test_page()`), submitting feedback (`def _submit_feedback()`), and document management (`def manage_sap_documents()`). **Metadata filter function on chat interface is defined in `def sap_docs_test_page()`**.
