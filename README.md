@@ -13,7 +13,7 @@
 `python evaluate.py`
 
 > [!TIP]
-> The Evaluation_Queries_and_Answers.xlsx test set has been uploaded to the "Quantitative Evaluation" folder in GitHub and the WWU Thesis Uploader. Should the GitHub fail to open, please use the copy in the WWU Thesis Uploader instead.***
+> The Evaluation_Queries_and_Answers.xlsx test set has been uploaded to the "Quantitative Evaluation" folder in GitHub and the WWU Thesis Uploader. Should the GitHub fail to open, please use the copy in the WWU Thesis Uploader instead.
    
 # Artifacts Implementation
 
