@@ -12,11 +12,13 @@
 
 `python evaluate.py`
 
-***Note: The Evaluation_Queries_and_Answers.xlsx test set has been uploaded to the "Quantitative Evaluation" folder in GitHub and the WWU Thesis Uploader. Should the GitHub fail to open, please use the copy in the WWU Thesis Uploader instead.***
+> [!TIP]
+> The Evaluation_Queries_and_Answers.xlsx test set has been uploaded to the "Quantitative Evaluation" folder in GitHub and the WWU Thesis Uploader. Should the GitHub fail to open, please use the copy in the WWU Thesis Uploader instead.***
    
 # Artifacts Implementation
 
-> **Note:** Due to the high dependency of enterprise AWS and Azure configurations, the application can not be run in the standard environment. This folder only contains the scripts that are relevant to this thesis. This codebase is provided for academic review as part of the Bachelor Thesis.
+> [!IMPORTANT]
+>  Due to the high dependency of enterprise AWS and Azure configurations, the application can not be run in the standard environment. This folder only contains the scripts that are relevant to this thesis. This codebase is provided for academic review as part of the Bachelor Thesis.
 
 ### Key Features
 
