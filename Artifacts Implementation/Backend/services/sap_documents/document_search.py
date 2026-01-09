@@ -222,15 +222,16 @@ class DocumentSearch:
 			if isinstance(v, (list, tuple, set)):
 				return list(v)
 			return [v]
-	
+			
+		# Define filter logic
 		def _apply_filters(query, d_alias):
 			if not filters:
 				return query
-
+				
 			status_vals = _as_list(filters.get('status'))
 			if status_vals:
 				query = query.where(d_alias.status.in_(status_vals))
-
+				
 			data_type_vals = _as_list(filters.get('data_type'))
 			if data_type_vals:
 				query = query.where(d_alias.data_type.in_(data_type_vals))
@@ -242,7 +243,8 @@ class DocumentSearch:
 			version_vals = _as_list(filters.get('version'))
 			if version_vals:
 				query = query.where(d_alias.version.in_(version_vals))
-
+			
+			# If 'domain' is in filters, add WHERE domain IN (...) to the SQL query
 			domain_vals = _as_list(filters.get('domain'))
 			if domain_vals:
 				query = query.where(d_alias.domain.in_(domain_vals))
@@ -250,7 +252,8 @@ class DocumentSearch:
 			author_vals = _as_list(filters.get('author'))
 			if author_vals:
 				query = query.where(d_alias.author.in_(author_vals))
-
+			
+			# If 'language' is in filters, add WHERE language IN (...) to the SQL query
 			language_vals = _as_list(filters.get('language'))
 			if language_vals:
 				query = query.where(d_alias.language.in_(language_vals))
@@ -262,7 +265,7 @@ class DocumentSearch:
 				e = aliased(SapDocsEmbedding, name='e')
 				d = aliased(SapDocument, name='d')
 
-				# 1) Vector candidates (global)
+				# Apply filters to Vector Search
 				q_vec_base = (
 					select(
 						e.id.label('embedding_id'),
@@ -273,8 +276,9 @@ class DocumentSearch:
 						d.document_name.label('document_name'),
 						e.embedding.cosine_distance(vector).label('cosine_distance'),
 					)
-					.join(d, e.document_id == d.id)
+					.join(d, e.document_id == d.id) # Join tables using document_id
 				)
+				# Call _apply_filters, injecting WHERE clauses into the SQL
 				q_vec_base = _apply_filters(q_vec_base, d)
 				q_vec = q_vec_base.order_by('cosine_distance').limit(vec_k)
 				vec_rows = session.execute(q_vec).all()
@@ -603,4 +607,5 @@ class DocumentSearch:
 			except Exception as e:
 				logger.error(f'Error expiring documents: {str(e)}')
 				session.rollback()
+
 				return []
