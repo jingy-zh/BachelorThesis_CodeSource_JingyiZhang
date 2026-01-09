@@ -60,4 +60,4 @@
     
 ## Frontend
 
-* **va_app.py:** A Streamlit frontend interface for chatting, submitting feedback, and document management.
+* **va_app.py:** A Streamlit frontend interface for chatting (`def sap_docs_test_page()`), submitting feedback (`def _submit_feedback()`), and document management (`def manage_sap_documents()`). Metadata filter function on chat interface is defined in `def sap_docs_test_page()`.
